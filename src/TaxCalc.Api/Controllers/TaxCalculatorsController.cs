@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TaxCalc.Api.Dtos;
+using TaxCalc.Business;
 using TaxCalc.Domain;
 using TaxCalc.Domain.Models;
 
@@ -29,15 +31,26 @@ namespace TaxCalc.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(string zip, string street, string city, string state, string country, CancellationToken cancellationToken)
         {
-            var result = await taxCalcBusiness.GetTaskRateForLocationAsync(zip, new OptionalAddress
+            try
             {
-                Street = street,
-                City = city,
-                State = state,                
-                Country = country
-            }, cancellationToken);
+                var result = await taxCalcBusiness.GetTaskRateForLocationAsync(zip, new OptionalAddress
+                {
+                    Street = street,
+                    City = city,
+                    State = state,                
+                    Country = country
+                }, cancellationToken);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (TaxCalcProviderException ex)
+            {
+                return BadRequest(ex.Detail);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpPost]
@@ -45,9 +58,20 @@ namespace TaxCalc.Api.Controllers
         {
             var order = mapper.Map<Order>(orderDto);
 
-            var result = await taxCalcBusiness.CalculateTaxForAnOrderAsync(order, cancellationToken);
+            try
+            {
+                var result = await taxCalcBusiness.CalculateTaxForAnOrderAsync(order, cancellationToken);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (TaxCalcProviderException ex)
+            {
+                return BadRequest(ex.Detail);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }
