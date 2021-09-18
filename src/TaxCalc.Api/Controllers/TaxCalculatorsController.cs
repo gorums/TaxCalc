@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TaxCalc.Api.Dtos;
@@ -31,13 +29,18 @@ namespace TaxCalc.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(string zip, string street, string city, string state, string country, CancellationToken cancellationToken)
         {
+            if (string.IsNullOrEmpty(zip))
+            {
+                return BadRequest("The parameter zip is required");
+            }
+
             try
             {
                 var result = await taxCalcBusiness.GetTaskRateForLocationAsync(zip, new OptionalAddress
                 {
                     Street = street,
                     City = city,
-                    State = state,                
+                    State = state,
                     Country = country
                 }, cancellationToken);
 
@@ -56,6 +59,11 @@ namespace TaxCalc.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrderDto orderDto, CancellationToken cancellationToken)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.Values);
+            }
+
             var order = mapper.Map<Order>(orderDto);
 
             try

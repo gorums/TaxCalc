@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Validations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TaxCalc.Business\TaxCalc.Business.csproj" />
     <ProjectReference Include="..\TaxCalc.Domain\TaxCalc.Domain.csproj" />
   </ItemGroup>

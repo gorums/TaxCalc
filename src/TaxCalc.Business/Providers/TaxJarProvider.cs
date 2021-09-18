@@ -9,11 +9,18 @@ using TaxCalc.Domain.Models;
 
 namespace TaxCalc.Business.Providers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TaxJarProvider : ITaxCalcProvider
     {
         private readonly IRestClient client;
         private readonly TaxProviderOptions taxProviderOptions;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="taxProviderOptions"></param>
         public TaxJarProvider(TaxProviderOptions taxProviderOptions)
         {
             this.taxProviderOptions = taxProviderOptions;
@@ -52,7 +59,7 @@ namespace TaxCalc.Business.Providers
             );
 
             return await this.ExecuteIfExWaitAndRetryAsync<TaxResult>(() => client.ExecuteAsync(request, cancellationToken));
-        }       
+        }
 
         /// <summary>
         /// 
