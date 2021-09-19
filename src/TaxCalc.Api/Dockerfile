@@ -7,7 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
+
+COPY ["TaxCalc.Domain/TaxCalc.Domain.csproj", "TaxCalc.Domain/"]
+COPY ["TaxCalc.Business/TaxCalc.Business.csproj", "TaxCalc.Business/"]
 COPY ["TaxCalculation.Api/TaxCalculation.Api.csproj", "TaxCalculation.Api/"]
+
 RUN dotnet restore "TaxCalculation.Api/TaxCalculation.Api.csproj"
 COPY . .
 WORKDIR "/src/TaxCalculation.Api"
