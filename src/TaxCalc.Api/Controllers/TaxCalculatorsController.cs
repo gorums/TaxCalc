@@ -26,7 +26,7 @@ namespace TaxCalc.Api.Controllers
             this.taxCalcBusiness = taxCalcBusiness;
         }
 
-        [HttpGet]
+        [HttpGet("GetTaxRateForLocation")]
         public async Task<IActionResult> Get(string zip, string street, string city, string state, string country, CancellationToken cancellationToken)
         {
             if (string.IsNullOrEmpty(zip))
@@ -36,7 +36,7 @@ namespace TaxCalc.Api.Controllers
 
             try
             {
-                var result = await taxCalcBusiness.GetTaskRateForLocationAsync(zip, new OptionalAddress
+                var result = await taxCalcBusiness.GetTaxRateForLocationAsync(zip, new OptionalAddress
                 {
                     Street = street,
                     City = city,
@@ -60,7 +60,7 @@ namespace TaxCalc.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("CalculateTaxForAnOrder")]
         public async Task<IActionResult> Post([FromBody] OrderDto orderDto, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)

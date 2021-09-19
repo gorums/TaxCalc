@@ -16,7 +16,7 @@ namespace TaxCalc.Domain
         /// <param name="OptionalAddress">Optional parameter with [street, country, state and city]</param>
         /// <param name="cancellationToken">Notification that operations should be canceled</param>
         /// <returns></returns>
-        Task<Rate> GetTaskRateForLocationAsync(string zip, OptionalAddress OptionalAddress, CancellationToken cancellationToken = default);
+        Task<Rate> GetTaxRateForLocationAsync(string zip, OptionalAddress OptionalAddress = default, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Shows the sales tax that should be collected for a given order.

@@ -23,7 +23,10 @@ namespace TaxCalc.Client
             client = new RestClient(taxCalcBaseUrl);
         }
 
-        public async Task<RateResult> GetTaskRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public async Task<RateResult> GetTaxRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default)
         {
 
             if (string.IsNullOrEmpty(zip))
@@ -31,7 +34,7 @@ namespace TaxCalc.Client
                 throw new ArgumentException("The parameter zip is required");
             }
 
-            var request = new RestRequest(zip);
+            var request = new RestRequest($"api/TaxCalculators/GetTaxRateForLocation?zip={zip}");
 
             if (optionalAddress != null)               
             {
@@ -59,9 +62,17 @@ namespace TaxCalc.Client
             return await client.GetAsync<RateResult>(request, cancellationToken);
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         public async Task<TaxResult> CalculateTaxForAnOrderAsync(Order order, CancellationToken cancellationToken = default)
         {
-            var request = new RestRequest();
+            if (order == null)
+            {
+                throw new ArgumentException("Order is required");
+            }
+
+            var request = new RestRequest("api/TaxCalculators/CalculateTaxForAnOrder");
 
             request.AddJsonBody
             (

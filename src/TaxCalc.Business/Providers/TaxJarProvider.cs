@@ -33,7 +33,7 @@ namespace TaxCalc.Business.Providers
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public async Task<RateResult> GetTaskRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default)
+        public async Task<RateResult> GetTaxRateForLocationAsync(string zip, OptionalAddress optionalAddress = default, CancellationToken cancellationToken = default)
         {
             var request = new RestRequest($"/rates/{zip}", Method.GET);
 

@@ -1,17 +1,32 @@
+using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
+using TaxCalc.Business.Configurations;
 using TaxCalc.Domain;
 using TaxCalc.Domain.Models;
 
 namespace TaxCalc.Business.Tests
 {
     [TestClass]
-    public class TaskRateForLocationTest
+    public class TaxRateForLocationTest
     {
         [TestMethod]
-        public void TestTaskRateForLocation()
+        [ExpectedException(typeof(ArgumentException), "The parameter zip is required")]
+        public async Task TestTaxRateForLocationWitoutZip()
+        {
+            // Arrange
+            var mockTaxCalcProviderFactory = new Mock<ITaxCalcProviderFactory>();
+
+            // Act 
+            var taxCalcBusiness = new TaxCalcBusiness(mockTaxCalcProviderFactory.Object);
+            var rate = await taxCalcBusiness.GetTaxRateForLocationAsync(string.Empty, null);
+        }
+
+        [TestMethod]
+        public async Task TestTaxRateForLocation()
         {
             // Arrange
             var mockTaxCalcProviderFactory = new Mock<ITaxCalcProviderFactory>();
@@ -22,7 +37,7 @@ namespace TaxCalc.Business.Tests
                 .Returns(() => mockTaxCalcProvider.Object);
 
             mockTaxCalcProvider
-                .Setup(p => p.GetTaskRateForLocationAsync(It.IsAny<string>(), It.IsAny<OptionalAddress>(), It.IsAny<CancellationToken>()))
+                .Setup(p => p.GetTaxRateForLocationAsync(It.IsAny<string>(), It.IsAny<OptionalAddress>(), It.IsAny<CancellationToken>()))
                 .Returns<string, OptionalAddress, CancellationToken>((zip, optionalAddress, c) =>
                 {
                     if ("90404".Equals(zip))
@@ -41,7 +56,7 @@ namespace TaxCalc.Business.Tests
 
             // Act 
             var taxCalcBusiness = new TaxCalcBusiness(mockTaxCalcProviderFactory.Object);
-            var rate = taxCalcBusiness.GetTaskRateForLocationAsync("90404", null).Result;
+            var rate = await taxCalcBusiness.GetTaxRateForLocationAsync("90404", null);
 
             // Assert 
             Assert.IsTrue(rate != null);
@@ -49,7 +64,7 @@ namespace TaxCalc.Business.Tests
         }
 
         [TestMethod]
-        public void TestTaskRateForLocationWrongZip()
+        public async Task TestTaxRateForLocationWrongZip()
         {
             // Arrange
             var mockTaxCalcProviderFactory = new Mock<ITaxCalcProviderFactory>();
@@ -60,7 +75,7 @@ namespace TaxCalc.Business.Tests
                 .Returns(() => mockTaxCalcProvider.Object);
 
             mockTaxCalcProvider
-                .Setup(p => p.GetTaskRateForLocationAsync(It.IsAny<string>(), It.IsAny<OptionalAddress>(), It.IsAny<CancellationToken>()))
+                .Setup(p => p.GetTaxRateForLocationAsync(It.IsAny<string>(), It.IsAny<OptionalAddress>(), It.IsAny<CancellationToken>()))
                 .Returns<string, OptionalAddress, CancellationToken>((zip, optionalAddress, c) =>
                 {
                     if ("11111".Equals(zip))
@@ -80,7 +95,7 @@ namespace TaxCalc.Business.Tests
 
             // Act 
             var taxCalcBusiness = new TaxCalcBusiness(mockTaxCalcProviderFactory.Object);
-            var rate = taxCalcBusiness.GetTaskRateForLocationAsync("11111", null).Result;
+            var rate = await taxCalcBusiness.GetTaxRateForLocationAsync("11111", null);
 
             // Assert 
             Assert.IsTrue(rate == null);

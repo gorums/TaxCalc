@@ -29,7 +29,7 @@ namespace TaxCalc.Business
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public async Task<Rate> GetTaskRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default)
+        public async Task<Rate> GetTaxRateForLocationAsync(string zip, OptionalAddress optionalAddress = default, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrEmpty(zip))
             {
@@ -38,7 +38,7 @@ namespace TaxCalc.Business
 
             var provider = taxCalcProviderFactory.GetTaxCalcProviderImpl();
 
-            var result = await provider.GetTaskRateForLocationAsync(zip, optionalAddress, cancellationToken);
+            var result = await provider.GetTaxRateForLocationAsync(zip, optionalAddress, cancellationToken);
 
             return result.Rate;
         }
