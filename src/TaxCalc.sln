@@ -7,11 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc.Client", "TaxCalc.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc.Api", "TaxCalc.Api\TaxCalc.Api.csproj", "{2D5C0DF3-383B-49B7-9B07-5C5C2760D81E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalc.Domain", "TaxCalc.Domain\TaxCalc.Domain.csproj", "{CD1C198C-B577-4BDA-B055-63AF1598CCCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc.Domain", "TaxCalc.Domain\TaxCalc.Domain.csproj", "{CD1C198C-B577-4BDA-B055-63AF1598CCCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalc.Business", "TaxCalc.Business\TaxCalc.Business.csproj", "{43BAEC6E-0630-45A1-B19D-4CC4D63C6F34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc.Business", "TaxCalc.Business\TaxCalc.Business.csproj", "{43BAEC6E-0630-45A1-B19D-4CC4D63C6F34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxCalc.Business.Tests", "TaxCalc.Business.Tests\TaxCalc.Business.Tests.csproj", "{B3399424-4650-4543-8062-963CC4A04269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc.Business.Tests", "TaxCalc.Business.Tests\TaxCalc.Business.Tests.csproj", "{B3399424-4650-4543-8062-963CC4A04269}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B97ADD-5C3A-431A-8797-3CA422B68A55}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

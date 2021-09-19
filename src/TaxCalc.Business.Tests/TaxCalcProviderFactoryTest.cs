@@ -8,11 +8,11 @@ using TaxCalc.Business.Configurations;
 namespace TaxCalc.Business.Tests
 {
     [TestClass]
-    public class TaxCalcFactoryTest
+    public class TaxCalcProviderFactoryTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "The provider Wrong Provider does not exist")]
-        public async Task TestFactoryWrongProvider()
+        public async Task TestTaxCalcProviderFactoryWrongProvider()
         {
             // Arrange
             var mockOptions = new Mock<IOptions<TaxProviderOptions>>();
@@ -37,7 +37,7 @@ namespace TaxCalc.Business.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "The Retry value only can be between 1 and 10")]
-        public async Task TestFactoryInvalidRetry()
+        public async Task TestTaxCalcProviderFactoryInvalidRetry()
         {
             // Arrange
             var mockOptions = new Mock<IOptions<TaxProviderOptions>>();
@@ -62,7 +62,7 @@ namespace TaxCalc.Business.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "The URl is invalid")]
-        public async Task TestFactoryInvalidURL()
+        public async Task TestTaxCalcProviderFactoryInvalidURL()
         {
             // Arrange
             var mockOptions = new Mock<IOptions<TaxProviderOptions>>();
@@ -87,7 +87,7 @@ namespace TaxCalc.Business.Tests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "The Token can not be empty")]
-        public async Task TestFactoryEmptyToken()
+        public async Task TestTaxCalcProviderFactoryEmptyToken()
         {
             // Arrange
             var mockOptions = new Mock<IOptions<TaxProviderOptions>>();
