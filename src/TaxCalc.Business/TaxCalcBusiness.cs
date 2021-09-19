@@ -1,9 +1,7 @@
-﻿using FluentValidation;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TaxCalc.Business.Constans;
 using TaxCalc.Business.Validators;
 using TaxCalc.Domain;
 using TaxCalc.Domain.Models;

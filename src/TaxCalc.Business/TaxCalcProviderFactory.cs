@@ -57,7 +57,7 @@ namespace TaxCalc.Business
                 throw new ArgumentException("The URl can not be empty", nameof(TaxProviderOptions.Url));
             }
 
-            if (!Uri.IsWellFormedUriString(options.Url,UriKind.Absolute))
+            if (!Uri.IsWellFormedUriString(options.Url, UriKind.Absolute))
             {
                 throw new ArgumentException("The URl is invalid", nameof(TaxProviderOptions.Url));
             }

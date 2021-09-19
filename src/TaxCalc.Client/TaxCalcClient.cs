@@ -36,7 +36,7 @@ namespace TaxCalc.Client
 
             var request = new RestRequest($"api/TaxCalculators/GetTaxRateForLocation?zip={zip}");
 
-            if (optionalAddress != null)               
+            if (optionalAddress != null)
             {
                 if (!string.IsNullOrEmpty(optionalAddress.Street))
                 {
@@ -56,7 +56,7 @@ namespace TaxCalc.Client
                 if (!string.IsNullOrEmpty(optionalAddress.City))
                 {
                     request.AddParameter("city", optionalAddress.City);
-                }               
+                }
             }
 
             return await client.GetAsync<RateResult>(request, cancellationToken);
@@ -83,6 +83,6 @@ namespace TaxCalc.Client
             );
 
             return await client.PostAsync<TaxResult>(request, cancellationToken);
-        }        
+        }
     }
 }

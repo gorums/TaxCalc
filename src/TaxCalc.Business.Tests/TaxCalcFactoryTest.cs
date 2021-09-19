@@ -21,7 +21,7 @@ namespace TaxCalc.Business.Tests
                 .Setup(t => t.Value)
                 .Returns(() => new TaxProviderOptions
                 {
-                    Name = "Wrong Provider",
+                    Name = "Wrong Provider", // "The provider Wrong Provider does not exist"
                     Url = "https://api.taxjar.com/v2",
                     Token = "1111",
                     Retry = 3,
@@ -72,9 +72,9 @@ namespace TaxCalc.Business.Tests
                 .Returns(() => new TaxProviderOptions
                 {
                     Name = "TaxJar",
-                    Url = "invalid url",
+                    Url = "invalid url", // "The URl is invalid"
                     Token = "1111",
-                    Retry = 3, // "The Retry value only can be between 1 and 10"
+                    Retry = 3,
                     Wait = 5000
                 });
 
@@ -97,9 +97,9 @@ namespace TaxCalc.Business.Tests
                 .Returns(() => new TaxProviderOptions
                 {
                     Name = "TaxJar",
-                    Token = string.Empty,
+                    Token = string.Empty, // "The Token can not be empty"
                     Url = "https://api.taxjar.com/v2",
-                    Retry = 3, // "The Retry value only can be between 1 and 10"
+                    Retry = 3,
                     Wait = 5000
                 });
 

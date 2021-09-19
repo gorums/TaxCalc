@@ -5,7 +5,7 @@ namespace TaxCalc.Domain.Models
     public class NexusAddress
     {
         [JsonPropertyName("id")]
-        public string  Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("country")]
         public string Country { get; set; }

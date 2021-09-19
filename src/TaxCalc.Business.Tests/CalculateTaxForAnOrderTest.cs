@@ -44,7 +44,7 @@ namespace TaxCalc.Business.Tests
             var taxCalcBusiness = new TaxCalcBusiness(mockTaxCalcProviderFactory.Object);
             var tax = await taxCalcBusiness.CalculateTaxForAnOrderAsync(new Order
             {
-                ToCountry ="CA"
+                ToCountry = "CA"
             });
         }
 
@@ -104,7 +104,7 @@ namespace TaxCalc.Business.Tests
                 .Returns(() => mockTaxCalcProvider.Object);
 
             mockTaxCalcProvider
-                .Setup(p => p.CalculateTaxForAnOrderAsync(It.IsAny<Order>(),  It.IsAny<CancellationToken>()))
+                .Setup(p => p.CalculateTaxForAnOrderAsync(It.IsAny<Order>(), It.IsAny<CancellationToken>()))
                 .Returns<Order, CancellationToken>((order, c) =>
                 {
                     if ("US".Equals(order.ToCountry))

@@ -54,6 +54,6 @@ namespace TaxCalc.Domain.Models
         public Shipping Shipping { get; set; }
 
         [JsonPropertyName("line_items")]
-        public List<LineItem> LineItems { get; set; } 
+        public List<LineItem> LineItems { get; set; }
     }
 }
