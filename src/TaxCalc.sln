@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxCalc.Business.Tests", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9B97ADD-5C3A-431A-8797-3CA422B68A55}"
 	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject

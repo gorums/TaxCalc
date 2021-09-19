@@ -10,17 +10,17 @@ WORKDIR /src
 
 COPY ["TaxCalc.Domain/TaxCalc.Domain.csproj", "TaxCalc.Domain/"]
 COPY ["TaxCalc.Business/TaxCalc.Business.csproj", "TaxCalc.Business/"]
-COPY ["TaxCalculation.Api/TaxCalculation.Api.csproj", "TaxCalculation.Api/"]
+COPY ["TaxCalc.Api/TaxCalc.Api.csproj", "TaxCalc.Api/"]
 
-RUN dotnet restore "TaxCalculation.Api/TaxCalculation.Api.csproj"
+RUN dotnet restore "TaxCalc.Api/TaxCalc.Api.csproj"
 COPY . .
-WORKDIR "/src/TaxCalculation.Api"
-RUN dotnet build "TaxCalculation.Api.csproj" -c Release -o /app/build
+WORKDIR "/src/TaxCalc.Api"
+RUN dotnet build "TaxCalc.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TaxCalculation.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "TaxCalc.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TaxCalculation.Api.dll"]
+ENTRYPOINT ["dotnet", "TaxCalc.Api.dll"]

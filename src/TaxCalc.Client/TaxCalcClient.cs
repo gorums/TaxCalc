@@ -26,7 +26,7 @@ namespace TaxCalc.Client
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public async Task<RateResult> GetTaxRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default)
+        public async Task<Rate> GetTaxRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default)
         {
 
             if (string.IsNullOrEmpty(zip))
@@ -65,7 +65,7 @@ namespace TaxCalc.Client
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public async Task<TaxResult> CalculateTaxForAnOrderAsync(Order order, CancellationToken cancellationToken = default)
+        public async Task<Tax> CalculateTaxForAnOrderAsync(Order order, CancellationToken cancellationToken = default)
         {
             if (order == null)
             {

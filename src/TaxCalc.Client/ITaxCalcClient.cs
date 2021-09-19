@@ -16,7 +16,7 @@ namespace TaxCalc.Client
         /// <param name="optionalAddress">Optional parameter with [street, country, state and city]</param>
         /// <param name="cancellationToken">Notification that operations should be canceled</param>
         /// <returns></returns>
-        Task<RateResult> GetTaxRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default);
+        Task<Rate> GetTaxRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Shows the sales tax that should be collected for a given order.
@@ -24,6 +24,6 @@ namespace TaxCalc.Client
         /// <param name="order">An Order to calculate Tax</param>
         /// <param name="cancellationToken">Notification that operations should be canceled</param>
         /// <returns></returns>
-        Task<TaxResult> CalculateTaxForAnOrderAsync(Order order, CancellationToken cancellationToken = default);
+        Task<Tax> CalculateTaxForAnOrderAsync(Order order, CancellationToken cancellationToken = default);
     }
 }
