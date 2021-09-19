@@ -36,7 +36,10 @@ namespace TaxCalc.Business.Providers
         public async Task<RateResult> GetTaskRateForLocationAsync(string zip, OptionalAddress optionalAddress, CancellationToken cancellationToken = default)
         {
             var request = new RestRequest($"/rates/{zip}", Method.GET);
-            if (optionalAddress != null)
+
+            if (optionalAddress != null &&
+               (!string.IsNullOrEmpty(optionalAddress.Street) || !string.IsNullOrEmpty(optionalAddress.Country) || 
+                !string.IsNullOrEmpty(optionalAddress.State) || !string.IsNullOrEmpty(optionalAddress.City)))
             {
                 request.AddJsonBody(optionalAddress);
             }

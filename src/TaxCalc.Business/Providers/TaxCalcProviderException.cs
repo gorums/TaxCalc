@@ -2,7 +2,7 @@
 using System.Text.Json;
 using TaxCalc.Domain.Models;
 
-namespace TaxCalc.Business
+namespace TaxCalc.Business.Providers
 {
     public class TaxCalcProviderException : Exception
     {

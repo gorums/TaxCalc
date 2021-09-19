@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TaxCalc.Business.Constans;
@@ -47,7 +48,11 @@ namespace TaxCalc.Business
         /// </summary>
         public async Task<Tax> CalculateTaxForAnOrderAsync(Order order, CancellationToken cancellationToken = default)
         {
-            new OrderValidator().ValidateAndThrow(order);
+            var validation = new OrderValidator().Validate(order);
+            if (!validation.IsValid)
+            {
+                throw new ArgumentException(String.Join(", ", validation.Errors.Select(er => er.ErrorMessage)));
+            }
 
             var provider = taxCalcProviderFactory.GetTaxCalcProvider(ProviderNames.TAX_JAR);
 

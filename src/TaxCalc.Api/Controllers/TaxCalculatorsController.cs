@@ -5,7 +5,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TaxCalc.Api.Dtos;
-using TaxCalc.Business;
+using TaxCalc.Business.Providers;
 using TaxCalc.Domain;
 using TaxCalc.Domain.Models;
 
