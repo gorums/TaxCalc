@@ -50,6 +50,10 @@ namespace TaxCalc.Api.Controllers
             {
                 return BadRequest(ex.Detail);
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
@@ -75,6 +79,10 @@ namespace TaxCalc.Api.Controllers
             catch (TaxCalcProviderException ex)
             {
                 return BadRequest(ex.Detail);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception)
             {

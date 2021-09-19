@@ -1,23 +1,23 @@
 ﻿using Microsoft.Extensions.Options;
 using System;
+using TaxCalc.Business.Configurations;
 using TaxCalc.Business.Constans;
 using TaxCalc.Business.Providers;
 using TaxCalc.Domain;
-using TaxCalc.Domain.Models;
 
 namespace TaxCalc.Business
 {
     /// <summary>
-    /// 
+    /// This class implement <see cref="ITaxCalcProviderFactory"/>
     /// </summary>
     public class TaxCalcProviderFactory : ITaxCalcProviderFactory
     {
         private readonly TaxProviderOptions taxProviderOptions;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="TaxCalcProviderFactory" /> class
         /// </summary>
-        /// <param name="taxProviderOptions"></param>
+        /// <param name="taxProviderOptions"><see cref="IOptions{TaxProviderOptions}"/></param>
         public TaxCalcProviderFactory(IOptions<TaxProviderOptions> taxProviderOptions)
         {
             this.taxProviderOptions = taxProviderOptions.Value;
@@ -40,9 +40,9 @@ namespace TaxCalc.Business
         }
 
         /// <summary>
-        /// 
+        /// Valid the provider options
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="options">Provider options</param>
         private static void ThrowIfInvalidOptions(TaxProviderOptions options)
         {
             options = options ?? throw new ArgumentNullException(nameof(options));

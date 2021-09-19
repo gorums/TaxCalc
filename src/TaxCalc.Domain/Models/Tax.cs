@@ -35,6 +35,6 @@ namespace TaxCalc.Domain.Models
         public Jurisdictions Jurisdictions { get; set; }
 
         [JsonPropertyName("breakdown")]
-        public Breakdown Breakdown { get; set; }  
+        public Breakdown Breakdown { get; set; }
     }
 }

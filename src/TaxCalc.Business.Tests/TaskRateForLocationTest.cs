@@ -66,7 +66,7 @@ namespace TaxCalc.Business.Tests
                     if ("11111".Equals(zip))
                     {
                         // Empty Rate
-                        return Task.FromResult(new RateResult());                       
+                        return Task.FromResult(new RateResult());
                     }
 
                     return Task.FromResult(new RateResult()

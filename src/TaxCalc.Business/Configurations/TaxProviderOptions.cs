@@ -1,6 +1,6 @@
-﻿namespace TaxCalc.Domain.Models
+﻿namespace TaxCalc.Business.Configurations
 {
-    public class TaxProviderOptions
+    public class TaxProviderOptions : ITaxProviderOptions
     {
         public string Url { get; set; }
         public string Token { get; set; }

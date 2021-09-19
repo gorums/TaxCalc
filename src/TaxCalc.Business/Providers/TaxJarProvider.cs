@@ -4,24 +4,25 @@ using System;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using TaxCalc.Business.Configurations;
 using TaxCalc.Domain;
 using TaxCalc.Domain.Models;
 
 namespace TaxCalc.Business.Providers
 {
     /// <summary>
-    /// 
+    /// This class implement <see cref="ITaxCalcProvider"/>
     /// </summary>
     public class TaxJarProvider : ITaxCalcProvider
     {
         private readonly IRestClient client;
-        private readonly TaxProviderOptions taxProviderOptions;
+        private readonly ITaxProviderOptions taxProviderOptions;
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="TaxJarProvider" /> class
         /// </summary>
-        /// <param name="taxProviderOptions"></param>
-        public TaxJarProvider(TaxProviderOptions taxProviderOptions)
+        /// <param name="taxProviderOptions"><see cref="ITaxProviderOptions"/></param>
+        public TaxJarProvider(ITaxProviderOptions taxProviderOptions)
         {
             this.taxProviderOptions = taxProviderOptions;
 
@@ -62,11 +63,12 @@ namespace TaxCalc.Business.Providers
         }
 
         /// <summary>
-        /// 
+        /// Execute and retry if the API call is falling
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="task"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The response type</typeparam>
+        /// <param name="task">The API call</param>
+        /// <returns>The response type</returns>
+        /// <exception cref="TaxCalcProviderException">If the API continue falling</exception>
         private async Task<T> ExecuteIfExWaitAndRetryAsync<T>(Func<Task<IRestResponse>> task)
         {
             // Polly for wait and retry if any exception in the api call

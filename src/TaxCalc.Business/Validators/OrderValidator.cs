@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
-using TaxCalc.Api.Dtos;
+using TaxCalc.Domain.Models;
 
-namespace TaxCalc.Api.Validators
+namespace TaxCalc.Business.Validators
 {
-    public class OrderValidator : AbstractValidator<OrderDto>
+    public class OrderValidator : AbstractValidator<Order>
     {
         public OrderValidator()
         {
             RuleFor(order => order.ToCountry)
                 .NotEmpty()
-                .WithMessage(o => $"The field {nameof(o.ToCountry)} is required");
+                .WithMessage(o => $"The parameter {nameof(o.ToCountry)} is required");
 
             RuleFor(order => order.Shipping)
                .GreaterThan(0)

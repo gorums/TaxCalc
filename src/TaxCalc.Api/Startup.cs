@@ -7,8 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using TaxCalc.Api.Validators;
 using TaxCalc.Business;
+using TaxCalc.Business.Configurations;
 using TaxCalc.Domain;
-using TaxCalc.Domain.Models;
 
 namespace TaxCalculation.Api
 {
@@ -25,7 +25,7 @@ namespace TaxCalculation.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<OrderValidator>());
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<OrderDtoValidator>());
 
             var taxProviderOptions = Configuration.GetSection(nameof(TaxProviderOptions));
             services.Configure<TaxProviderOptions>(taxProviderOptions);

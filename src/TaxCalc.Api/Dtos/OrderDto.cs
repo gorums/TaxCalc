@@ -24,7 +24,7 @@
 
         public double Amount { get; set; }
 
-        public double Shipping { get; set; }        
+        public double Shipping { get; set; }
 
         public string CustomerId { get; set; }
 

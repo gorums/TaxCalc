@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace TaxCalc.Domain.Models
 {
     public class Breakdown
-    {       
+    {
         [JsonPropertyName("taxable_amount")]
         public double TaxableAmount { get; set; }
 
@@ -15,7 +15,7 @@ namespace TaxCalc.Domain.Models
         public double CombinedTaxRate { get; set; }
 
         [JsonPropertyName("state_taxable_amount")]
-        public double StateTaxableAmount { get; set; }        
+        public double StateTaxableAmount { get; set; }
 
         [JsonPropertyName("state_tax_rate")]
         public double StateTaxRate { get; set; }
@@ -54,6 +54,6 @@ namespace TaxCalc.Domain.Models
         public Shipping Shipping { get; set; }
 
         [JsonPropertyName("line_items")]
-        public List<LineItem> LineItems { get; } = new List<LineItem>();              
+        public List<LineItem> LineItems { get; } = new List<LineItem>();
     }
 }

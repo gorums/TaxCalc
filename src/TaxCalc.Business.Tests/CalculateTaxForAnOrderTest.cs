@@ -1,9 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Threading;
-using System.Threading.Tasks;
 using TaxCalc.Domain;
-using TaxCalc.Domain.Models;
 
 namespace TaxCalc.Business.Tests
 {
@@ -21,7 +18,7 @@ namespace TaxCalc.Business.Tests
                 .Setup(t => t.GetTaxCalcProvider(It.IsAny<string>()))
                 .Returns<string>((providerName) => mockTaxCalcProvider.Object);
 
-            
+
         }
 
         [TestMethod]
@@ -35,7 +32,7 @@ namespace TaxCalc.Business.Tests
                 .Setup(t => t.GetTaxCalcProvider(It.IsAny<string>()))
                 .Returns<string>((providerName) => mockTaxCalcProvider.Object);
 
-           
+
         }
     }
 }
