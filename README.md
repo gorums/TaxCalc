@@ -21,13 +21,13 @@ sudo docker run 4b222385d8e4
 
 ### Using Client
 
-We need to publish the client to the nuget repository
+We can publish the client to the nuget repository, the project folder `src/TaxCalc.Client`
 
 ```
 dotnet nuget push TaxCalc.Client.1.0.0.nupkg --api-key {APY_KEY} --source https://api.nuget.org/v3/index.json
 ```
 
-If we have the nuget package, then we can import the package in our project and if we have the TaxCalc microservice runnign in the URl `https://taxcalcmicroservice.com`
+If we have the nuget package, then we can import the package in our project and if we have the TaxCalc microservice runnign in the URL `https://taxcalcmicroservice.com`
 
 ```
 using TaxCalc.Client;
@@ -48,3 +48,13 @@ namespace TryTaxCalcClient
     }
 }
 ```
+
+Noted: `TaxCalc.Client` project is using `netstandard2.0`, that means that we can use this client on `.NET Framework 4.6.1` or higher and `.NET Core 2.0` or higher
+
+## Third-Party Libraries
+
+[https://automapper.org/](https://automapper.org/)
+
+[https://fluentvalidation.net/](https://fluentvalidation.net/)
+
+[https://restsharp.dev/](https://restsharp.dev/)
