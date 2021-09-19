@@ -28,15 +28,15 @@ namespace TaxCalc.Business
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public ITaxCalcProvider GetTaxCalcProvider(string provideName)
+        public ITaxCalcProvider GetTaxCalcProviderImpl()
         {
-            switch (provideName)
+            switch (taxProviderOptions.Name)
             {
                 case ProviderNames.TAX_JAR:
                     return new TaxJarProvider(taxProviderOptions);
             }
 
-            throw new ArgumentException($"The provider {provideName} does not exist");
+            throw new ArgumentException($"The provider {taxProviderOptions.Name} does not exist");
         }
 
         /// <summary>
@@ -46,6 +46,11 @@ namespace TaxCalc.Business
         private static void ThrowIfInvalidOptions(TaxProviderOptions options)
         {
             options = options ?? throw new ArgumentNullException(nameof(options));
+
+            if (string.IsNullOrEmpty(options.Name))
+            {
+                throw new ArgumentException("The Provider Name can not be empty", nameof(TaxProviderOptions.Name));
+            }
 
             if (string.IsNullOrEmpty(options.Url))
             {

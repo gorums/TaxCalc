@@ -18,8 +18,8 @@ namespace TaxCalc.Business.Tests
             var mockTaxCalcProvider = new Mock<ITaxCalcProvider>();
 
             mockTaxCalcProviderFactory
-                .Setup(t => t.GetTaxCalcProvider(It.IsAny<string>()))
-                .Returns<string>((providerName) => mockTaxCalcProvider.Object);
+                .Setup(t => t.GetTaxCalcProviderImpl())
+                .Returns(() => mockTaxCalcProvider.Object);
 
             mockTaxCalcProvider
                 .Setup(p => p.GetTaskRateForLocationAsync(It.IsAny<string>(), It.IsAny<OptionalAddress>(), It.IsAny<CancellationToken>()))
@@ -56,8 +56,8 @@ namespace TaxCalc.Business.Tests
             var mockTaxCalcProvider = new Mock<ITaxCalcProvider>();
 
             mockTaxCalcProviderFactory
-                .Setup(t => t.GetTaxCalcProvider(It.IsAny<string>()))
-                .Returns<string>((providerName) => mockTaxCalcProvider.Object);
+                .Setup(t => t.GetTaxCalcProviderImpl())
+                .Returns(() => mockTaxCalcProvider.Object);
 
             mockTaxCalcProvider
                 .Setup(p => p.GetTaskRateForLocationAsync(It.IsAny<string>(), It.IsAny<OptionalAddress>(), It.IsAny<CancellationToken>()))

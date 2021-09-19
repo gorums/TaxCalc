@@ -47,6 +47,9 @@ namespace TaxCalc.Domain.Models
         [JsonPropertyName("exemption_type")]
         public string ExemptionType { get; set; }
 
+        [JsonPropertyName("nexus_addresses")]
+        public List<NexusAddress> NexusAddresses { get; set; }
+
         [JsonPropertyName("line_items")]
         public List<LineItem> LineItems { get; set; }
     }

@@ -15,7 +15,7 @@ namespace TaxCalc.Business.Tests
             var mockTaxCalcProvider = new Mock<ITaxCalcProvider>();
 
             mockTaxCalcProviderFactory
-                .Setup(t => t.GetTaxCalcProvider(It.IsAny<string>()))
+                .Setup(t => t.GetTaxCalcProviderImpl())
                 .Returns<string>((providerName) => mockTaxCalcProvider.Object);
 
 
@@ -29,7 +29,7 @@ namespace TaxCalc.Business.Tests
             var mockTaxCalcProvider = new Mock<ITaxCalcProvider>();
 
             mockTaxCalcProviderFactory
-                .Setup(t => t.GetTaxCalcProvider(It.IsAny<string>()))
+                .Setup(t => t.GetTaxCalcProviderImpl())
                 .Returns<string>((providerName) => mockTaxCalcProvider.Object);
 
 

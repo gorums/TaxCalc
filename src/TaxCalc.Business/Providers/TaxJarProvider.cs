@@ -37,11 +37,27 @@ namespace TaxCalc.Business.Providers
         {
             var request = new RestRequest($"/rates/{zip}", Method.GET);
 
-            if (optionalAddress != null &&
-               (!string.IsNullOrEmpty(optionalAddress.Street) || !string.IsNullOrEmpty(optionalAddress.Country) || 
-                !string.IsNullOrEmpty(optionalAddress.State) || !string.IsNullOrEmpty(optionalAddress.City)))
+            if (optionalAddress != null)
             {
-                request.AddJsonBody(optionalAddress);
+                if (!string.IsNullOrEmpty(optionalAddress.Street))
+                {
+                    request.AddParameter("street", optionalAddress.Street);
+                }
+
+                if (!string.IsNullOrEmpty(optionalAddress.Country))
+                {
+                    request.AddParameter("country", optionalAddress.Country);
+                }
+
+                if (!string.IsNullOrEmpty(optionalAddress.State))
+                {
+                    request.AddParameter("state", optionalAddress.State);
+                }
+
+                if (!string.IsNullOrEmpty(optionalAddress.City))
+                {
+                    request.AddParameter("city", optionalAddress.City);
+                }
             }
 
             return await this.ExecuteIfExWaitAndRetryAsync<RateResult>(() => client.ExecuteAsync(request, cancellationToken));

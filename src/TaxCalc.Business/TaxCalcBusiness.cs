@@ -36,7 +36,7 @@ namespace TaxCalc.Business
                 throw new ArgumentException($"The parameter {nameof(zip)} is required");
             }
 
-            var provider = taxCalcProviderFactory.GetTaxCalcProvider(ProviderNames.TAX_JAR);
+            var provider = taxCalcProviderFactory.GetTaxCalcProviderImpl();
 
             var result = await provider.GetTaskRateForLocationAsync(zip, optionalAddress, cancellationToken);
 
@@ -54,7 +54,7 @@ namespace TaxCalc.Business
                 throw new ArgumentException(String.Join(", ", validation.Errors.Select(er => er.ErrorMessage)));
             }
 
-            var provider = taxCalcProviderFactory.GetTaxCalcProvider(ProviderNames.TAX_JAR);
+            var provider = taxCalcProviderFactory.GetTaxCalcProviderImpl();
 
             var result = await provider.CalculateTaxForAnOrderAsync(order, cancellationToken);
 

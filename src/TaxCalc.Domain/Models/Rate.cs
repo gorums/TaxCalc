@@ -19,6 +19,12 @@ namespace TaxCalc.Domain.Models
         [JsonPropertyName("state_rate")]
         public string StateRate { get; set; }
 
+        [JsonPropertyName("county")]
+        public string County { get; set; }
+
+        [JsonPropertyName("county_rate")]
+        public string CountyRate { get; set; }
+
         [JsonPropertyName("city")]
         public string City { get; set; }
 
