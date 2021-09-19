@@ -1,5 +1,5 @@
 # TaxCalc
-> The Tax Service microservice using TaxJar as Provider
+> The Tax Calculator microservice using TaxJar as Provider
 
 ## Installing / Getting started
 
@@ -19,7 +19,7 @@ sudo docker run 4b222385d8e4
 
 ```
 
-### Using Client
+### Using Client Package
 
 We can publish the client to the nuget repository, the project folder `src/TaxCalc.Client`
 
