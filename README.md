@@ -58,3 +58,5 @@ Noted: `TaxCalc.Client` project is using `netstandard2.0`, that means that we ca
 [https://fluentvalidation.net/](https://fluentvalidation.net/)
 
 [https://restsharp.dev/](https://restsharp.dev/)
+
+[http://www.thepollyproject.org/](http://www.thepollyproject.org/)
